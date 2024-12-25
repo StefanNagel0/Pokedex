@@ -14,11 +14,9 @@ function getPokemonTemplate(pokemon) {
             <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
         </div>
             <div class="pokemon-details">
-                <div class="pokemon-details">
                     ${pokemon.types
                         .map(type => `<img class="pokemon-type-icon" src="${getTypeIcon(type.type.name)}" alt="${type.type.name}">`)
                         .join(" ")}
-                </div>
             </div>
     </div>
     `
