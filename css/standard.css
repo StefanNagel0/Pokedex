@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    scroll-behavior: smooth;
+    font-size: 12px;
+}
+
+a {
+    text-decoration: none;
+}
+button{
+    cursor: pointer;
+}
+
+.d-none{
+    display: none;
+}
+
+body{
+    background-color: rgb(7,24,32);
+    font-family: 'Roboto Flex';
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto Flex';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../assets/fonts/roboto-flex-v26-latin-regular.woff2) format('woff2');
+}

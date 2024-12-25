@@ -1,0 +1,79 @@
+.pokemon-type-icon {
+    width: 48px;
+    height: 48px;
+    margin: 5px;
+    display: inline-block;
+}
+
+
+.pokemon-type.grass {
+    background-color: #78c850; /* Grün */
+}
+
+.pokemon-type.poison {
+    background-color: #a040a0; /* Lila */
+}
+
+.pokemon-type.fire {
+    background-color: #f08030; /* Orange */
+}
+
+.pokemon-type.water {
+    background-color: #6890f0; /* Blau */
+}
+
+.pokemon-type.electric {
+    background-color: #f8d030; /* Gelb */
+}
+
+.pokemon-type.ice {
+    background-color: #98d8d8; /* Hellblau */
+}
+
+.pokemon-type.fighting {
+    background-color: #c03028; /* Rotbraun */
+}
+
+.pokemon-type.ground {
+    background-color: #e0c068; /* Beige */
+}
+
+.pokemon-type.flying {
+    background-color: #a890f0; /* Hellviolett */
+}
+
+.pokemon-type.psychic {
+    background-color: #f85888; /* Rosa */
+}
+
+.pokemon-type.bug {
+    background-color: #a8b820; /* Olivgrün */
+}
+
+.pokemon-type.rock {
+    background-color: #b8a038; /* Braun */
+}
+
+.pokemon-type.ghost {
+    background-color: #705898; /* Dunkelviolett */
+}
+
+.pokemon-type.dragon {
+    background-color: #7038f8; /* Dunkelviolett-Blau */
+}
+
+.pokemon-type.dark {
+    background-color: #705848; /* Dunkelbraun */
+}
+
+.pokemon-type.steel {
+    background-color: #b8b8d0; /* Grau */
+}
+
+.pokemon-type.fairy {
+    background-color: #ee99ac; /* Hellrosa */
+}
+
+.pokemon-type.normal {
+    background-color: #a8a878; /* Grau-Grün */
+}
