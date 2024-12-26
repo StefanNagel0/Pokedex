@@ -1,9 +1,12 @@
 let pokemons = []
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon?limit=30&offset=0";
+let currentRenderId = 0;
+
 
 
 async function init() {
     pokemons = await loadPokemonWithDetails();
+    console.log(`Loaded ${pokemons.length} Pokémon`);
     renderPokemon();
     setupPokemonSearch();
 }
@@ -15,11 +18,19 @@ async function getPokemon() {
 }
 
 function renderPokemon(filteredPokemons = null) {
-    const pokemonContainer = document.getElementById("pokemon_load_content");
-    pokemonContainer.innerHTML = "";
+    const pokemonContainer = document.getElementById('pokemon_load_content');
+    pokemonContainer.innerHTML = '';
     const pokemonsToRender = filteredPokemons || pokemons;
+    if (!pokemonsToRender || pokemonsToRender.length === 0) {
+        console.warn("No Pokémon to render.");
+        return;
+    }
+    const renderId = ++currentRenderId;
     (async function loadPokemon() {
         for (let i = 0; i < pokemonsToRender.length; i++) {
+            if (renderId !== currentRenderId) {
+                return;
+            }
             const pokemonDetails = await getPokemonDetails(pokemonsToRender[i].url);
             pokemonContainer.innerHTML += getPokemonTemplate(pokemonDetails);
         }
@@ -33,21 +44,44 @@ async function getPokemonDetails(url) {
 }
 
 function filterAndShowPokemon(filterword) {
+    if (!filterword || filterword.length === 0) {
+        renderPokemon(pokemons);
+        return;
+    }
     const filteredPokemons = pokemons.filter(pokemon => {
         const matchesName = pokemon.name.toLowerCase().includes(filterword.toLowerCase());
         const matchesType = pokemon.types.some(type => type.type.name.toLowerCase().includes(filterword.toLowerCase()));
         return matchesName || matchesType;
     });
-
-    renderPokemon(filteredPokemons);
+    const limitedPokemons = filteredPokemons.slice(0, 10);
+    renderPokemon(limitedPokemons);
 }
 
 function setupPokemonSearch() {
     const searchInput = document.getElementById('pokemon-search');
-    
-    searchInput.addEventListener('input', function() {
+    const searchInfo = document.getElementById('search-info');
+
+    searchInput.addEventListener('input', function () {
         const filterword = this.value.trim().toLowerCase();
-        filterAndShowPokemon(filterword);
+        if (filterword.length === 0) {
+            searchInfo.classList.remove('visible');
+            renderPokemon(pokemons);
+            return;
+        }
+        if (filterword.length < 3) {
+            searchInfo.classList.add('visible');
+        } else {
+            searchInfo.classList.remove('visible');
+            filterAndShowPokemon(filterword);
+        }
+    });
+    searchInput.addEventListener('focus', function () {
+        if (searchInput.value.trim().length < 3 && searchInput.value.trim().length > 0) {
+            searchInfo.classList.add('visible');
+        }
+    });
+    searchInput.addEventListener('blur', function () {
+        searchInfo.classList.remove('visible');
     });
 }
 

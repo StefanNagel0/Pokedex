@@ -57,3 +57,14 @@ header{
 #pokemon-search:focus::placeholder {
     color: #424242;
 }
+
+.search-info {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none; /* Standardmäßig ausgeblendet */
+}
+
+.search-info.visible {
+    display: block; /* Sichtbar machen */
+}
