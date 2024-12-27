@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="./css/standard.css">
     <link rel="stylesheet" href="./css/pokemon_card.css">
     <link rel="stylesheet" href="./css/pokemon_types.css">
+    <link rel="stylesheet" href="./css/overlay.css">
     <link rel="icon" href="./assets/img/svg/pokeball-pokemon-svgrepo-com.svg">
-    <script src="./script.js"></script>
+    <script src="./js/script.js"></script>
     <script src="./js/pokemon_template.js"></script>
+    <script src="./js/overlay.js"></script>
 </head>
 <body onload="init()">
     <header>
@@ -29,7 +31,20 @@
             <div id="search-info" class="search-info hidden">Bitte 3 Buchstaben eingeben, um die Suche zu starten</div>
         </div>
     </header>
+    <div id="pokemon_overlay" class="pokemon-overlay d_none">
+        <div class="overlay-content">
+            <button onclick="closePopup()">X</button>
+            <div id="popup-content"></div>
+            <div class="overlay-navigation">
+                <button onclick="prevPokemon()">Vorheriges</button>
+                <button onclick="nextPokemon()">Nächstes</button>
+            </div>
+        </div>
+    </div>
     <section id="pokemon_load_content" class="pokemon-content">
     </section>
+    <div class="more-pokemons-btn">
+        <button id="load_more_pokemons" class="more-pokemons">Weitere Pokemon laden!</button>
+    </div>
 </body>
 </html>
