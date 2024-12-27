@@ -1,15 +1,18 @@
 let currentPokemonIndex = 10;
 
 function openPopup(index) {
+    const overlay = document.getElementById('pokemon_overlay');
+    overlay.classList.add('active');// Klasse entfernen, um das Element anzuzeigen
+
     currentPokemonIndex = index; 
     const pokemon = pokemons[currentPokemonIndex];
     const popupContent = document.getElementById('popup-content');
     popupContent.innerHTML = getPokemonPopupTemplate(pokemon);
-    document.getElementById('pokemon_overlay').classList.remove('d_none');
 }
 
 function closePopup() {
-    document.getElementById('pokemon_overlay').classList.add('d_none');
+    const overlay = document.getElementById('pokemon_overlay');
+    overlay.classList.remove('active'); // Klasse hinzufügen, um das Element auszublenden
 }
 
 function prevPokemon() {

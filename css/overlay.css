@@ -1,21 +1,28 @@
-/* Popup */
+
 .pokemon-overlay {
     position: fixed;
-    top: 0;
+    top: 0px;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background: rgba(0, 0, 0, 0.7);
     z-index: 1000;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokemon-overlay.active{
+    display: flex;
 }
 
 .pokemon-overlay .overlay-content {
     position: relative;
     background: #fff;
     width: 80%;
-    max-width: 600px;
+    max-width: 300px;
     margin: 5% auto;
-    padding: 20px;
     border-radius: 10px;
     text-align: center;
 }
@@ -23,18 +30,28 @@
 .pokemon-overlay .overlay-navigation {
     margin-top: 20px;
 }
-
-.pokemon-popup img {
-    width: 150px;
-    height: auto;
-}
-
-.pokemon-popup p {
-    margin: 10px 0;
+.pokemon-popup{
+    text-transform: capitalize;
 }
 
 button {
     padding: 10px;
     margin: 5px;
     cursor: pointer;
+}
+.popup_content{
+    width: 100%;
+}
+
+.pokemon-header-overlay{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+
+.pokemon-image-overlay img{
+    height: 110px;
+    width: 110px;
 }

@@ -27,6 +27,7 @@ function getTypeIcon(typeName) {
 }
 
 function getPokemonPopupTemplate(pokemon) {
+    const mainType = pokemon.types[0].type.name;
     const spriteUrl = pokemon?.sprites?.front_default || './assets/img/types/bug.png';
     if (!pokemon || !pokemon.sprites || !pokemon.sprites.front_default) {
         console.error('Pokemon-Objekt oder front_default-Sprite fehlt', pokemon);
@@ -34,13 +35,26 @@ function getPokemonPopupTemplate(pokemon) {
     }
     return `
         <div class="pokemon-popup">
-            <h2>${pokemon.name} (#${pokemon.id})</h2>
-            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
-            <div class="pokemon-types">
-                ${pokemon.types.map(type => `<span class="pokemon-type ${type.type.name}">${type.type.name}</span>`).join(' ')}
+        <div class="pokemon-header-overlay">
+            <div>
+                <h2>#${pokemon.id}</h2>
             </div>
-            <p>Height: ${pokemon.height} - Weight: ${pokemon.weight}</p>
-            <!-- Weitere Details anzeigen... -->
+            <div>
+                <h2>${pokemon.name}</h2>
+            </div>
+            <div>
+                <button onclick="closePopup()">X</button>
+            </div>
+        </div>
+        <div class="pokemon-image-overlay  pokemon-type ${mainType}">
+            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+        </div>
+        <div class="pokemon-details">
+            ${pokemon.types
+                .map(type => `<img class="pokemon-type-icon" src="${getTypeIcon(type.type.name)}" alt="${type.type.name}">`)
+                .join(" ")}
+        </div>
         </div>
     `;
 }
+
