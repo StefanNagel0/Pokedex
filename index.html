@@ -12,6 +12,7 @@
     <link rel="icon" href="./assets/img/svg/pokeball-pokemon-svgrepo-com.svg">
     <script src="./js/script.js"></script>
     <script src="./js/pokemon_template.js"></script>
+    <script src="./js/overlay_template.js"></script>
     <script src="./js/overlay.js"></script>
 </head>
 <body onload="init()">
@@ -34,10 +35,6 @@
     <div id="pokemon_overlay" class="pokemon-overlay d_none">
         <div class="overlay-content">
             <div class="popup_content" id="popup-content"></div>
-            <div class="overlay-navigation">
-                <button onclick="prevPokemon()">Vorheriges</button>
-                <button onclick="nextPokemon()">Nächstes</button>
-            </div>
         </div>
     </div>
     <section id="pokemon_load_content" class="pokemon-content">

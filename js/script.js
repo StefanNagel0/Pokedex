@@ -8,11 +8,9 @@ function docID(id) {
     return document.getElementById(id);
 }
 
-
 async function init() {
     pokemons = await loadPokemonWithDetails();
-    console.log('Pokemons:', pokemons);
-    
+
     renderPokemon();
     setupPokemonSearch();
     setupEventListeners();
@@ -121,10 +119,17 @@ async function loadPokemonWithDetails() {
                     id: details.id,
                     url: pokemon.url,
                     types: details.types,
-                    sprites: details.sprites
+                    sprites: details.sprites,
+                    height: details.height, // Höhe hinzufügen
+                    weight: details.weight, // Gewicht hinzufügen
+                    base_experience: details.base_experience, // Basis-EP hinzufügen
+                    abilities: details.abilities // Fähigkeiten hinzufügen
+
                 };
             }
+            console.warn('Ungültige Daten für Pokémon:', pokemon);
         })
     );
     return filteredPokemons.filter(p => p);
+    
 }
