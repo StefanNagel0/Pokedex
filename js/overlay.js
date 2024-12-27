@@ -1,4 +1,4 @@
-let currentPokemonIndex = 10;
+let currentPokemonIndex = 0;
 let currentPokemon = null;
 
 
@@ -28,4 +28,29 @@ function nextPokemon() {
         currentPokemonIndex++;
         openPopup(currentPokemonIndex);
     }
+}
+
+async function parseEvolutionChain(chain) {
+    const evolutionImages = [];
+
+    async function getSprite(pokemonName) {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`);
+        const data = await response.json();
+        return data.sprites.front_default;
+    }
+
+    async function traverseChain(chainNode) {
+        const sprite = await getSprite(chainNode.species.name);
+        if (sprite) {
+            evolutionImages.push(sprite);
+        }
+        if (chainNode.evolves_to.length > 0) {
+            for (const nextChain of chainNode.evolves_to) {
+                await traverseChain(nextChain);
+            }
+        }
+    }
+
+    await traverseChain(chain);
+    return evolutionImages;
 }
