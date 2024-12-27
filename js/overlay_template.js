@@ -62,8 +62,8 @@ function getPokemonNavigationButtons() {
 function getActionButtons() {
     return `
     <div class="action-buttons">
-        <button onclick="showMain()">main</button>
-        <button onclick="showStats()">stats</button>
+        <button onclick="showMain(currentPokemon)">main</button>
+        <button onclick="showStats(currentPokemon)">stats</button>
         <button onclick="showEvoChain()">evo-chain</button>
     </div>
     `;
@@ -83,9 +83,31 @@ function showMain(pokemon) {
             <ul>${abilitiesHtml}</ul>
         </div>
     `;
-
     const dynamicContent = document.getElementById('show_main_content');
     if (dynamicContent) {
         dynamicContent.innerHTML = mainContent;
+    }
+}
+
+function showStats(pokemon) {
+    if (!pokemon || !pokemon.stats) {
+        console.error('Pokemon-Daten oder Stats fehlen:', pokemon);
+        return `<div class="error-message">Keine Statistiken verfügbar.</div>`;
+    }
+
+    const statsHtml = pokemon.stats
+        .map(stat => `<li>${stat.stat.name}: ${stat.base_stat}</li>`)
+        .join('');
+
+    const statsContent = `
+        <div class="pokemon-stats-info">
+            <h4>Stats:</h4>
+            <ul>${statsHtml}</ul>
+        </div>
+    `;
+
+    const dynamicContent = document.getElementById('show_main_content');
+    if (dynamicContent) {
+        dynamicContent.innerHTML = statsContent;
     }
 }

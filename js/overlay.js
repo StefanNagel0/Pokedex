@@ -1,12 +1,14 @@
 let currentPokemonIndex = 10;
+let currentPokemon = null;
+
 
 async function openPopup(index) {
     const overlay = document.getElementById('pokemon_overlay');
     overlay.classList.add('active');
-    const pokemon = pokemons[index];
+    currentPokemon = pokemons[index];
     const popupContent = document.getElementById('popup-content');
-    popupContent.innerHTML = getPokemonPopupTemplate(pokemon);
-    showMain(pokemon);
+    popupContent.innerHTML = getPokemonPopupTemplate(currentPokemon);
+    showMain(currentPokemon);
 }
 
 function closePopup() {

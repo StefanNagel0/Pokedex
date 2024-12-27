@@ -120,11 +120,11 @@ async function loadPokemonWithDetails() {
                     url: pokemon.url,
                     types: details.types,
                     sprites: details.sprites,
-                    height: details.height, // Höhe hinzufügen
-                    weight: details.weight, // Gewicht hinzufügen
-                    base_experience: details.base_experience, // Basis-EP hinzufügen
-                    abilities: details.abilities // Fähigkeiten hinzufügen
-
+                    height: details.height,
+                    weight: details.weight, 
+                    base_experience: details.base_experience,
+                    abilities: details.abilities ,
+                    stats: details.stats
                 };
             }
             console.warn('Ungültige Daten für Pokémon:', pokemon);
