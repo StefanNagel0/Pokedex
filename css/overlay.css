@@ -6,7 +6,7 @@
     width: 100%;
     height: 100vh;
     background: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
+    z-index: 900;
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -182,4 +182,11 @@ width: 100%;
 .pokemon-stats-info h4{
     font-size: 16px;
     padding-bottom: 12px;
+}
+.loading-spinner-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
 }

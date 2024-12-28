@@ -9,8 +9,9 @@ function docID(id) {
 }
 
 async function init() {
+    showLoadingSpinner();
     pokemons = await loadPokemonWithDetails();
-
+    hideLoadingSpinner();
     renderPokemon();
     setupPokemonSearch();
     setupEventListeners();
@@ -57,10 +58,12 @@ async function getPokemonDetails(url) {
 }
 
 async function increasePokemons() {
+    showLoadingSpinner();
     offset += limit; 
     BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
     const newPokemons = await loadPokemonWithDetails();
     pokemons = [...pokemons, ...newPokemons];
+    hideLoadingSpinner();
     renderPokemon();
 }
 
@@ -132,4 +135,14 @@ async function loadPokemonWithDetails() {
     );
     return filteredPokemons.filter(p => p);
     
+}
+
+function showLoadingSpinner() {
+    const spinner = document.getElementById('loading-spinner');
+    spinner.classList.remove('d_none');
+}
+
+function hideLoadingSpinner() {
+    const spinner = document.getElementById('loading-spinner');
+    spinner.classList.add('d_none');
 }

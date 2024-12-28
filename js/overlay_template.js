@@ -94,7 +94,7 @@ function showMain(pokemon) {
                 <div>Base Experience:</div>
                 <div>${pokemon.base_experience}</div>
             </div>
-            </div>
+        </div>
             <h4>Abilities:</h4>
             <ul class="main_abilities_html">${abilitiesHtml}</ul>
         </div>
@@ -137,6 +137,17 @@ async function showEvoChain() {
         return;
     }
 
+    const dynamicContent = document.getElementById('show_main_content');
+    if (!dynamicContent) {
+        console.error('Container für Hauptinhalt nicht gefunden!');
+        return;
+    }
+    // Lade-Spinner anzeigen
+    dynamicContent.innerHTML = `
+        <div class="loading-spinner-content">
+            <img src="./assets/gifs/load_animation.gif" alt="Loading...">
+        </div>
+    `;
     try {
         const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${currentPokemon.id}/`;
         const speciesResponse = await fetch(speciesUrl);
@@ -145,6 +156,7 @@ async function showEvoChain() {
         const evoChainResponse = await fetch(evoChainUrl);
         const evoChainData = await evoChainResponse.json();
         const evoImages = await parseEvolutionChain(evoChainData.chain);
+        // Evolution-Kette anzeigen
         const evoContent = `
             <div class="evolution-chain">
                 <h4>Evolutionslinie:</h4>
@@ -153,11 +165,46 @@ async function showEvoChain() {
                 </div>
             </div>
         `;
-        const dynamicContent = document.getElementById('show_main_content');
-        if (dynamicContent) {
-            dynamicContent.innerHTML = evoContent;
-        }
+        dynamicContent.innerHTML = evoContent;
     } catch (error) {
         console.error('Fehler beim Abrufen der Evolutionskette:', error);
+        // Fehlernachricht anzeigen
+        dynamicContent.innerHTML = `
+            <div class="error-message">
+                Fehler beim Laden der Evolutionskette. Bitte versuchen Sie es später erneut.
+            </div>
+        `;
     }
 }
+
+
+// async function showEvoChain() {
+//     if (!currentPokemon) {
+//         console.error('Kein aktuelles Pokémon verfügbar für Evolutionskette.');
+//         return;
+//     }
+
+//     try {
+//         const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${currentPokemon.id}/`;
+//         const speciesResponse = await fetch(speciesUrl);
+//         const speciesData = await speciesResponse.json();
+//         const evoChainUrl = speciesData.evolution_chain.url;
+//         const evoChainResponse = await fetch(evoChainUrl);
+//         const evoChainData = await evoChainResponse.json();
+//         const evoImages = await parseEvolutionChain(evoChainData.chain);
+//         const evoContent = `
+//             <div class="evolution-chain">
+//                 <h4>Evolutionslinie:</h4>
+//                 <div class="evolution-images">
+//                     ${evoImages.map(img => `<img src="${img}" alt="Evolution Pokémon">`).join('')}
+//                 </div>
+//             </div>
+//         `;
+//         const dynamicContent = document.getElementById('show_main_content');
+//         if (dynamicContent) {
+//             dynamicContent.innerHTML = evoContent;
+//         }
+//     } catch (error) {
+//         console.error('Fehler beim Abrufen der Evolutionskette:', error);
+//     }
+// }

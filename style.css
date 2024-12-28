@@ -1,29 +1,30 @@
-header{
+header {
     height: 100px;
-    background-color: rgb(11,34,42);
+    background-color: rgb(11, 34, 42);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
 }
 
-.header_infos{
+.header_infos {
     height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.header_img{
+.header_img {
     height: 50px;
 }
 
-.header_site_name{
+.header_site_name {
     color: white;
     font: 400;
     font-size: 32px;
 }
-.header_a_tag{
+
+.header_a_tag {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -79,7 +80,7 @@ header{
     display: block;
 }
 
-.more-pokemons-btn{
+.more-pokemons-btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,7 +89,7 @@ header{
     height: 60px;
 }
 
-.more-pokemons{
+.more-pokemons {
     cursor: pointer;
     border: 0;
     height: 100%;
@@ -98,6 +99,19 @@ header{
     color: white;
 }
 
-.more-pokemons:hover{
+.more-pokemons:hover {
     background-color: rgb(7, 24, 32);
+}
+
+.loading-spinner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
