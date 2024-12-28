@@ -57,7 +57,7 @@ async function getPokemonDetails(url) {
 
 async function increasePokemons() {
     showLoadingSpinner();
-    offset += limit; 
+    offset += limit;
     BASE_URL = `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`;
     const newPokemons = await loadPokemonWithDetails();
     pokemons = [...pokemons, ...newPokemons];

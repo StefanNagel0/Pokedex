@@ -53,3 +53,15 @@ async function parseEvolutionChain(chain) {
     await traverseChain(chain);
     return evolutionImages;
 }
+
+async function showEvoChain() {
+    updateDynamicContent(getLoadingSpinner());
+    try {
+        const evoChainData = await fetchEvoChain(currentPokemon.id);
+        const evoImages = await parseEvolutionChain(evoChainData.chain);
+        updateDynamicContent(getEvoContent(evoImages));
+    } catch (error) {
+        console.error('Fehler beim Abrufen der Evolutionskette:', error);
+        updateDynamicContent(getErrorMessage());
+    }
+}

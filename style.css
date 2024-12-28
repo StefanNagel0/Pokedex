@@ -7,7 +7,7 @@ header {
     justify-content: space-between;
     padding: 0 30px;
     transition: background-color 0.3s ease-in-out;
-    max-width: 1440px;
+    max-width: 1920px;
     margin: auto;
 }
 
@@ -86,8 +86,8 @@ header.darkened {
     justify-content: center;
     padding: 20px;
     overflow-y: scroll;
-    height: 77.5vh;
-    max-width: 1440px;
+    height: 82.5vh;
+    max-width: 1920px;
     margin: auto;
 }
 
@@ -140,7 +140,7 @@ header.darkened {
     width: 100%;
     border-top: 1px solid #ccc;
     height: 83px;
-    max-width: 1440px;
+    max-width: 1920px;
     margin: auto;
 }
 

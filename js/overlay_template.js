@@ -132,18 +132,6 @@ function getStatsHtml(stats) {
         .join('');
 }
 
-async function showEvoChain() {
-    updateDynamicContent(getLoadingSpinner());
-    try {
-        const evoChainData = await fetchEvoChain(currentPokemon.id);
-        const evoImages = await parseEvolutionChain(evoChainData.chain);
-        updateDynamicContent(getEvoContent(evoImages));
-    } catch (error) {
-        console.error('Fehler beim Abrufen der Evolutionskette:', error);
-        updateDynamicContent(getErrorMessage());
-    }
-}
-
 function getLoadingSpinner() {
     return `<div class="loading-spinner-content"><img src="./assets/gifs/load_animation.gif" alt="Loading..."></div>`;
 }
