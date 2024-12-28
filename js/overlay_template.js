@@ -53,8 +53,8 @@ function getPokemonTypeIcons(types) {
 function getPokemonNavigationButtons() {
     return `
     <div class="overlay-navigation">
-        <button onclick="prevPokemon()">Vorheriges</button>
-        <button onclick="nextPokemon()">Nächstes</button>
+        <button onclick="prevPokemon()"><img src="./assets/icons/png/arrow_back.png" alt="arrow"></button>
+        <button onclick="nextPokemon()"><img src="./assets/icons/png/arrow_forward.png" alt="arrow"></button>
     </div>
     `;
 }
@@ -62,25 +62,39 @@ function getPokemonNavigationButtons() {
 function getActionButtons() {
     return `
     <div class="action-buttons">
-        <button onclick="showMain(currentPokemon)">main</button>
-        <button onclick="showStats(currentPokemon)">stats</button>
-        <button onclick="showEvoChain()">evo-chain</button>
+        <button class="button_main" onclick="showMain(currentPokemon)">main</button>
+        <button class="button_stats" onclick="showStats(currentPokemon)">stats</button>
+        <button class="buttons_evo_chain" onclick="showEvoChain()">evo-chain</button>
     </div>
     `;
 }
 
 function showMain(pokemon) {
     const abilitiesHtml = pokemon.abilities
-        .map(ability => `<li>${ability.ability.name}</li>`)
+        .map(ability => `
+            <div class="main_ability">
+                <div>Ability:</div>
+                <div>${ability.ability.name}</div>
+            </div>
+        `)
         .join('');
 
     const mainContent = `
         <div class="pokemon-main-info">
-            <p>Height: ${pokemon.height}</p>
-            <p>Weight: ${pokemon.weight}</p>
-            <p>Base Experience: ${pokemon.base_experience}</p>
+            <div class="main_info_flex">
+                <div>height:</div>
+                <div>${pokemon.height}</div>
+            </div>
+            <div class="main_info_flex">
+                <div>weight:</div>
+                <div>${pokemon.weight}</div>
+            </div>
+            <div class="main_info_flex">
+                <div>Base Experience:</div>
+                <div>${pokemon.base_experience}</div>
+            </div>
             <h4>Abilities:</h4>
-            <ul>${abilitiesHtml}</ul>
+            <ul class="main_abilities_html">${abilitiesHtml}</ul>
         </div>
     `;
     const dynamicContent = document.getElementById('show_main_content');
@@ -92,20 +106,23 @@ function showMain(pokemon) {
 function showStats(pokemon) {
     if (!pokemon || !pokemon.stats) {
         console.error('Pokemon-Daten oder Stats fehlen:', pokemon);
-        return `<div class="error-message">Keine Statistiken verfügbar.</div>`;
+        return;
     }
 
     const statsHtml = pokemon.stats
-        .map(stat => `<li>${stat.stat.name}: ${stat.base_stat}</li>`)
+        .map(stat => `
+            <div class="row-stats">
+                <div>${stat.stat.name}:</div>
+                <div>${stat.base_stat}</div>
+            </div>
+        `)
         .join('');
-
     const statsContent = `
         <div class="pokemon-stats-info">
             <h4>Stats:</h4>
-            <ul>${statsHtml}</ul>
+            ${statsHtml}
         </div>
     `;
-
     const dynamicContent = document.getElementById('show_main_content');
     if (dynamicContent) {
         dynamicContent.innerHTML = statsContent;

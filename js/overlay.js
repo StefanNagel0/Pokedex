@@ -3,6 +3,7 @@ let currentPokemon = null;
 
 
 async function openPopup(index) {
+    currentPokemonIndex = index;
     const overlay = document.getElementById('pokemon_overlay');
     overlay.classList.add('active');
     currentPokemon = pokemons[index];

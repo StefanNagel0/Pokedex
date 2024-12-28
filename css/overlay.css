@@ -32,13 +32,11 @@
 }
 .pokemon-popup{
     text-transform: capitalize;
+    background-color: rgb(7, 24, 32);
+    color: white;
+    border-radius: 8px;
 }
 
-button {
-    padding: 10px;
-    margin: 5px;
-    cursor: pointer;
-}
 .popup_content{
     width: 100%;
 }
@@ -49,6 +47,24 @@ button {
     align-items: center;
     width: 90%;
     margin: auto;
+    height: 40px;
+}
+
+.pokemon-header-overlay h2{
+    font-size: 20px;
+}
+
+.pokemon-header-overlay button{
+    background-color: rgba(32, 7, 7, 0);
+    color: white;
+    font-size: 24px;
+    border: 0;
+    transition: transform 200ms ease-in-out;
+}
+
+.pokemon-header-overlay button:hover{
+    transform: rotate(180deg)
+                scale(1.2)
 }
 
 .pokemon-image-overlay img{
@@ -64,4 +80,89 @@ button {
     margin: 0 5px;
     width: 80px;
     height: auto;
+}
+
+.main_info_flex{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+}
+.main_abilities_html{
+    padding-inline-start: 0;
+}
+.main_ability{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+}
+
+.pokemon-main-info h4 {
+    padding: 12px 0;
+
+}
+.row-stats{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+}
+
+.action-buttons{
+display: flex;
+justify-content: space-between;
+width: 100%;
+}
+.action-buttons button{
+    width: 33.33%;
+    background-color: rgb(11, 34, 42);
+    color: white;
+    border: 0;
+    height: 30px;
+    font-size: 16px;
+    transition: transform 200ms ease-in-out;
+}
+
+.button_main:hover{
+    border-bottom: 2px solid red;
+    transform: scale(0.9);
+}
+
+.button_stats:hover{
+    border-bottom: 2px solid red;
+    transform: scale(0.9);
+}
+
+.buttons_evo_chain:hover{
+    border-bottom: 2px solid red;
+    transform: scale(0.9);
+}
+
+#show_main_content{
+    margin-top: 12px;
+}
+
+.overlay-navigation{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin: auto;
+}
+.overlay-navigation button{
+    border: 0;
+    background-color: rgba(32, 7, 7, 0);
+    color: white;
+    padding: 8px 0;
+}
+
+.overlay-navigation img{
+    height: 32px;
+    transition: transform 200ms ease-in-out;
+}
+
+.overlay-navigation img:hover{
+    transform: scale(1.2);
+    background-color: rgba(252, 64, 64, 0.515);
+    border-radius: 50%;
 }
