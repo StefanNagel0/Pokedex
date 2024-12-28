@@ -96,12 +96,25 @@ function handleSearchInput() {
     const searchInfo = document.getElementById('search-info');
     const filterword = searchInput.value.trim().toLowerCase();
 
-    searchInfo.classList.toggle('visible', filterword.length < 3);
-    if (filterword.length === 0) {
-        renderPokemon(pokemons);
-    } else {
-        filterAndShowPokemon(filterword);
+    if (filterword.length < 3) {
+        searchInfo.classList.remove('visible');
+        showAllPokemon();
+        return;
     }
+    if (filterword.length < 3) {
+        searchInfo.classList.add('visible');
+        return;
+    } else {
+        searchInfo.classList.remove('visible');
+    }
+    filterAndShowPokemon(filterword);
+}
+
+function showAllPokemon() {
+    const pokemonList = document.getElementById('pokemon_load_content');
+    pokemonList.innerHTML = pokemons
+        .map(pokemon => getPokemonTemplate(pokemon))
+        .join('');
 }
 
 function setupPokemonSearch() {

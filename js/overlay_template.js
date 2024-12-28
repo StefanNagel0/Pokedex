@@ -176,35 +176,3 @@ async function showEvoChain() {
         `;
     }
 }
-
-
-// async function showEvoChain() {
-//     if (!currentPokemon) {
-//         console.error('Kein aktuelles Pokémon verfügbar für Evolutionskette.');
-//         return;
-//     }
-
-//     try {
-//         const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${currentPokemon.id}/`;
-//         const speciesResponse = await fetch(speciesUrl);
-//         const speciesData = await speciesResponse.json();
-//         const evoChainUrl = speciesData.evolution_chain.url;
-//         const evoChainResponse = await fetch(evoChainUrl);
-//         const evoChainData = await evoChainResponse.json();
-//         const evoImages = await parseEvolutionChain(evoChainData.chain);
-//         const evoContent = `
-//             <div class="evolution-chain">
-//                 <h4>Evolutionslinie:</h4>
-//                 <div class="evolution-images">
-//                     ${evoImages.map(img => `<img src="${img}" alt="Evolution Pokémon">`).join('')}
-//                 </div>
-//             </div>
-//         `;
-//         const dynamicContent = document.getElementById('show_main_content');
-//         if (dynamicContent) {
-//             dynamicContent.innerHTML = evoContent;
-//         }
-//     } catch (error) {
-//         console.error('Fehler beim Abrufen der Evolutionskette:', error);
-//     }
-// }
