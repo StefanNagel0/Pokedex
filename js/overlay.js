@@ -10,7 +10,6 @@ async function openPopup(index) {
     const popupContent = document.getElementById('popup-content');
     popupContent.innerHTML = getPokemonPopupTemplate(currentPokemon);
     showMain(currentPokemon);
-
     overlay.addEventListener('click', handleOverlayClick);
 }
 
@@ -43,24 +42,13 @@ function nextPokemon() {
 
 async function parseEvolutionChain(chain) {
     const evolutionImages = [];
+    const getSprite = async (name) => (await (await fetch(`https://pokeapi.co/api/v2/pokemon/${name}/`)).json()).sprites.front_default;
 
-    async function getSprite(pokemonName) {
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}/`);
-        const data = await response.json();
-        return data.sprites.front_default;
-    }
-
-    async function traverseChain(chainNode) {
-        const sprite = await getSprite(chainNode.species.name);
-        if (sprite) {
-            evolutionImages.push(sprite);
-        }
-        if (chainNode.evolves_to.length > 0) {
-            for (const nextChain of chainNode.evolves_to) {
-                await traverseChain(nextChain);
-            }
-        }
-    }
+    const traverseChain = async (node) => {
+        const sprite = await getSprite(node.species.name);
+        if (sprite) evolutionImages.push(sprite);
+        for (const next of node.evolves_to) await traverseChain(next);
+    };
 
     await traverseChain(chain);
     return evolutionImages;

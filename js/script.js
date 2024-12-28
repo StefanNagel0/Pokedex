@@ -25,21 +25,19 @@ async function getPokemon() {
 
 function renderPokemon(filteredPokemons = null) {
     const pokemonContainer = document.getElementById('pokemon_load_content');
-    pokemonContainer.innerHTML = '';
     const pokemonsToRender = filteredPokemons || pokemons;
-    if (!pokemonsToRender || pokemonsToRender.length === 0) {
-        return;
-    }
+    if (!pokemonsToRender?.length) return;
+    pokemonContainer.innerHTML = '';
     const renderId = ++currentRenderId;
-    (async function loadPokemon() {
-        for (let i = 0; i < pokemonsToRender.length; i++) {
-            if (renderId !== currentRenderId) {
-                return;
-            }
-            const pokemonDetails = await getPokemonDetails(pokemonsToRender[i].url);
-            pokemonContainer.innerHTML += getPokemonTemplate(pokemonDetails, i);
-        }
-    })();
+    loadPokemons(pokemonsToRender, renderId, pokemonContainer);
+}
+
+async function loadPokemons(pokemons, renderId, container) {
+    for (let i = 0; i < pokemons.length; i++) {
+        if (renderId !== currentRenderId) return;
+        const pokemonDetails = await getPokemonDetails(pokemons[i].url);
+        container.innerHTML += getPokemonTemplate(pokemonDetails, i);
+    }
 }
 
 function setupEventListeners() {
@@ -96,18 +94,15 @@ function handleSearchInput() {
     const searchInfo = document.getElementById('search-info');
     const filterword = searchInput.value.trim().toLowerCase();
 
-    if (filterword.length < 3) {
-        searchInfo.classList.remove('visible');
-        showAllPokemon();
-        return;
-    }
-    if (filterword.length < 3) {
-        searchInfo.classList.add('visible');
-        return;
-    } else {
-        searchInfo.classList.remove('visible');
-    }
+    if (filterword.length < 3) return handleShortInput(searchInfo);
+
+    searchInfo.classList.remove('visible');
     filterAndShowPokemon(filterword);
+}
+
+function handleShortInput(searchInfo) {
+    searchInfo.classList.add('visible');
+    showAllPokemon();
 }
 
 function showAllPokemon() {
@@ -126,28 +121,26 @@ function setupPokemonSearch() {
 
 async function loadPokemonWithDetails() {
     const response = await getPokemon();
-    const filteredPokemons = await Promise.all(
-        response.results.map(async (pokemon) => {
-            const details = await getPokemonDetails(pokemon.url);
-            if (details.sprites && details.sprites.front_default) {
-                return {
-                    name: pokemon.name,
-                    id: details.id,
-                    url: pokemon.url,
-                    types: details.types,
-                    sprites: details.sprites,
-                    height: details.height,
-                    weight: details.weight, 
-                    base_experience: details.base_experience,
-                    abilities: details.abilities ,
-                    stats: details.stats
-                };
-            }
-            console.warn('Ungültige Daten für Pokémon:', pokemon);
-        })
-    );
-    return filteredPokemons.filter(p => p);
-    
+    const pokemons = await Promise.all(response.results.map(fetchPokemonDetails));
+    return pokemons.filter(p => p);
+}
+
+async function fetchPokemonDetails(pokemon) {
+    const details = await getPokemonDetails(pokemon.url);
+    if (details.sprites?.front_default) {
+        return {
+            name: pokemon.name,
+            id: details.id,
+            url: pokemon.url,
+            types: details.types,
+            sprites: details.sprites,
+            height: details.height,
+            weight: details.weight,
+            base_experience: details.base_experience,
+            abilities: details.abilities,
+            stats: details.stats,
+        };
+    }
 }
 
 function showLoadingSpinner() {
@@ -205,36 +198,47 @@ function toggleSearchBar() {
 window.addEventListener('resize', adjustSearchBarVisibility);
 window.addEventListener('DOMContentLoaded', adjustSearchBarVisibility);
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', initializeSearch);
+
+function initializeSearch() {
     const searchBar = document.querySelector('.search_bar');
     const searchIcon = document.querySelector('.search-icon');
     const header = document.querySelector('header');
-
-    function showSearchBar() {
-        searchBar.classList.add('active');
-        searchBar.style.display = 'block';
-        searchIcon.style.display = 'none';
-        header.classList.add('darkened');
+    if (!searchBar || !searchIcon || !header) {
+        console.error('Elemente für die Suchleiste konnten nicht gefunden werden.');
+        return;
     }
-
-    function hideSearchBar() {
-        searchBar.classList.remove('active');
-        searchBar.style.display = 'none';
-        searchIcon.style.display = 'block';
-        header.classList.remove('darkened');
-    }
-
-    searchIcon.addEventListener('click', (event) => {
-        event.stopPropagation();
-        showSearchBar();
-    });
-    document.addEventListener('click', (event) => {
-        if (window.innerWidth <= 440 && !searchBar.contains(event.target)) {
-            hideSearchBar();
-        }
-    });
-    searchBar.addEventListener('click', (event) => {
-        event.stopPropagation();
-    });
+    setupSearchBarEvents(searchBar, searchIcon, header);
     adjustSearchBarVisibility();
-});
+}
+
+function setupSearchBarEvents(searchBar, searchIcon, header) {
+    searchIcon.addEventListener('click', (event) => handleSearchIconClick(event, searchBar, searchIcon, header));
+    document.addEventListener('click', (event) => handleDocumentClick(event, searchBar, searchIcon, header));
+    searchBar.addEventListener('click', (event) => event.stopPropagation());
+}
+
+function handleSearchIconClick(event, searchBar, searchIcon, header) {
+    event.stopPropagation();
+    showSearchBar(searchBar, searchIcon, header);
+}
+
+function handleDocumentClick(event, searchBar, searchIcon, header) {
+    if (window.innerWidth <= 440 && !searchBar.contains(event.target)) {
+        hideSearchBar(searchBar, searchIcon, header);
+    }
+}
+
+function showSearchBar(searchBar, searchIcon, header) {
+    searchBar.classList.add('active');
+    searchBar.style.display = 'block';
+    searchIcon.style.display = 'none';
+    header.classList.add('darkened');
+}
+
+function hideSearchBar(searchBar, searchIcon, header) {
+    searchBar.classList.remove('active');
+    searchBar.style.display = 'none';
+    searchIcon.style.display = 'block';
+    header.classList.remove('darkened');
+}
