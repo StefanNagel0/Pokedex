@@ -159,3 +159,82 @@ function hideLoadingSpinner() {
     const spinner = document.getElementById('loading-spinner');
     spinner.classList.add('d_none');
 }
+
+function toggleSearchBar() {
+    const header = document.querySelector('header');
+    const searchBar = document.querySelector('.search_bar');
+
+    if (searchBar.classList.contains('active')) {
+        searchBar.classList.remove('active');
+        header.classList.remove('darkened');
+    } else {
+        searchBar.classList.add('active');
+        header.classList.add('darkened');
+    }
+}
+
+function adjustSearchBarVisibility() {
+    const searchBar = document.querySelector('.search_bar');
+    const searchIcon = document.querySelector('.search-icon');
+
+    if (window.innerWidth > 440) {
+        searchBar.style.display = 'flex';
+        searchIcon.style.display = 'none';
+    } else {
+        searchBar.style.display = 'none';
+        searchIcon.style.display = 'block';
+    }
+}
+
+function toggleSearchBar() {
+    const header = document.querySelector('header');
+    const searchBar = document.querySelector('.search_bar');
+
+    if (searchBar.classList.contains('active')) {
+        searchBar.classList.remove('active');
+        searchBar.style.display = 'none';
+        header.classList.remove('darkened');
+    } else {
+        // Suchleiste einblenden
+        searchBar.classList.add('active');
+        searchBar.style.display = 'flex';
+        header.classList.add('darkened');
+    }
+}
+
+window.addEventListener('resize', adjustSearchBarVisibility);
+window.addEventListener('DOMContentLoaded', adjustSearchBarVisibility);
+
+document.addEventListener('DOMContentLoaded', () => {
+    const searchBar = document.querySelector('.search_bar');
+    const searchIcon = document.querySelector('.search-icon');
+    const header = document.querySelector('header');
+
+    function showSearchBar() {
+        searchBar.classList.add('active');
+        searchBar.style.display = 'block';
+        searchIcon.style.display = 'none';
+        header.classList.add('darkened');
+    }
+
+    function hideSearchBar() {
+        searchBar.classList.remove('active');
+        searchBar.style.display = 'none';
+        searchIcon.style.display = 'block';
+        header.classList.remove('darkened');
+    }
+
+    searchIcon.addEventListener('click', (event) => {
+        event.stopPropagation();
+        showSearchBar();
+    });
+    document.addEventListener('click', (event) => {
+        if (window.innerWidth <= 440 && !searchBar.contains(event.target)) {
+            hideSearchBar();
+        }
+    });
+    searchBar.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+    adjustSearchBarVisibility();
+});

@@ -1,10 +1,54 @@
-header {
+/* header {
     height: 100px;
     background-color: rgb(11, 34, 42);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 30px;
+} */
+
+header {
+    position: relative;
+    height: 100px;
+    background-color: rgb(11, 34, 42);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+header.darkened {
+    background-color: rgb(208 208 208 / 11%);
+}
+
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search_bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-100%, -50%);
+    background-color: rgb(11, 34, 42);
+    border-radius: 25px;
+    z-index: 10;
+    transition: opacity 0.3s ease-in-out;
+    flex-direction: column;
+}
+
+.search_bar.active {
+    display: block;
+    opacity: 1;
+}
+
+.search-icon {
+    height: 24px;
+    cursor: pointer;
+    display: none;
 }
 
 .header_infos {
@@ -37,11 +81,11 @@ header {
     justify-content: center;
     padding: 20px;
     overflow-y: scroll;
-    height: 82.8vh;
+    height: 81vh;
 }
 
 #pokemon-search {
-    width: 100%;
+    width: 200px;
     max-width: 500px;
     padding: 10px;
     border: 2px solid #ccc;
@@ -78,6 +122,8 @@ header {
 
 .search-info.visible {
     display: block;
+    width: 200px;
+    text-align: center;
 }
 
 .more-pokemons-btn {
@@ -118,4 +164,20 @@ header {
     align-items: center;
     justify-content: center;
     z-index: 1000;
+}
+
+@media (max-width: 440px) {
+    .search_bar {
+        display: none;
+    }
+
+    .search-icon {
+        display: block;
+    }
+}
+
+@media (min-width: 441px) {
+    .search_bar {
+        display: flex;
+    }
 }

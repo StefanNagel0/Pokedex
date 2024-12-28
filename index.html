@@ -27,9 +27,12 @@
                 </div>
             </a>
         </div>
-        <div class="search_bar">
-            <input type="text" id="pokemon-search" placeholder="Search Pokémon/Type...">
-            <div id="search-info" class="search-info hidden">Bitte 3 Buchstaben eingeben, um die Suche zu starten</div>
+        <div class="search-container">
+            <img class="search-icon" src="./assets/icons/png/search.png" alt="Search" onclick="toggleSearchBar()">
+            <div class="search_bar">
+                <input type="text" id="pokemon-search" placeholder="Search Pokémon/Type...">
+                <div id="search-info" class="search-info hidden">Bitte 3 Buchstaben eingeben, um die Suche zu starten</div>
+            </div>
         </div>
     </header>
     <div id="loading-spinner" class="loading-spinner d_none">
