@@ -1,15 +1,6 @@
-/* header {
-    height: 100px;
-    background-color: rgb(11, 34, 42);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 30px;
-} */
-
 header {
     position: relative;
-    height: 100px;
+    height: 80px;
     background-color: rgb(11, 34, 42);
     display: flex;
     align-items: center;
@@ -81,7 +72,7 @@ header.darkened {
     justify-content: center;
     padding: 20px;
     overflow-y: scroll;
-    height: 81vh;
+    height: 77.5vh;
 }
 
 #pokemon-search {
@@ -132,17 +123,20 @@ header.darkened {
     align-items: center;
     width: 100%;
     border-top: 1px solid #ccc;
-    height: 60px;
+    height: 83px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 .more-pokemons {
     cursor: pointer;
     border: 0;
-    height: 100%;
     width: 100%;
     font-size: 24px;
     background-color: rgb(11, 34, 42);
     color: white;
+    height: 83px;
 }
 
 .more-pokemons:hover {

@@ -32,6 +32,14 @@
 }
 
 .pokemon-image img{
+    transition: transform 200ms ease-in-out;
+}
+
+.pokemon-image img:hover{
+transform: scale(1.2);
+}
+
+.pokemon-image img{
     max-width: 100px;
 }
 
