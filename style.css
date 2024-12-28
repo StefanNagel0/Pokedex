@@ -103,6 +103,10 @@ header {
     background-color: rgb(7, 24, 32);
 }
 
+.more_pokemon_gif{
+    height: 20px;
+}
+
 .loading-spinner {
     position: fixed;
     top: 0;
