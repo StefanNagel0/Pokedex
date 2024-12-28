@@ -76,6 +76,11 @@
     text-align: center;
 }
 
+.evolution-chain h4{
+    font-size: 16px;
+    padding-bottom: 12px;
+}
+
 .evolution-images img {
     margin: 0 5px;
     width: 80px;
@@ -99,9 +104,12 @@
 }
 
 .pokemon-main-info h4 {
-    padding: 12px 0;
-
+    padding-top: 8px;
+    padding-bottom: 12px;
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.406);
 }
+
 .row-stats{
     display: flex;
     justify-content: space-between;
@@ -165,4 +173,13 @@ width: 100%;
     transform: scale(1.2);
     background-color: rgba(252, 64, 64, 0.515);
     border-radius: 50%;
+}
+
+.main_info_margin{
+    margin-bottom: 12px;
+}
+
+.pokemon-stats-info h4{
+    font-size: 16px;
+    padding-bottom: 12px;
 }

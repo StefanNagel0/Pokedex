@@ -81,6 +81,7 @@ function showMain(pokemon) {
 
     const mainContent = `
         <div class="pokemon-main-info">
+        <div class="main_info_margin">
             <div class="main_info_flex">
                 <div>height:</div>
                 <div>${pokemon.height}</div>
@@ -92,6 +93,7 @@ function showMain(pokemon) {
             <div class="main_info_flex">
                 <div>Base Experience:</div>
                 <div>${pokemon.base_experience}</div>
+            </div>
             </div>
             <h4>Abilities:</h4>
             <ul class="main_abilities_html">${abilitiesHtml}</ul>
