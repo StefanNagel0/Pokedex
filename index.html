@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,29 +16,33 @@
     <script src="./js/overlay_template.js"></script>
     <script src="./js/overlay.js"></script>
 </head>
+
 <body onload="init()">
-    <header>
-        <div class="header_infos">
-            <a class="header_a_tag" href="./index.html">
-                <div>
-                    <img class="header_img" src="./assets/img/svg/pokeball-pokemon-svgrepo-com.svg" alt="">
-                </div>
-                <div class="header_site_name">
-                    <p class="header_site_name">Pokedex</p>
-                </div>
-            </a>
-        </div>
-        <div class="search-container">
-            <img class="search-icon" src="./assets/icons/png/search.png" alt="Search" onclick="toggleSearchBar()">
-            <div class="search_bar">
-                <input type="text" id="pokemon-search" placeholder="Search Pokémon/Type...">
-                <div id="search-info" class="search-info hidden">Bitte 3 Buchstaben eingeben, um die Suche zu starten</div>
+    <div class="max-width-background">
+        <header>
+            <div class="header_infos">
+                <a class="header_a_tag" href="./index.html">
+                    <div>
+                        <img class="header_img" src="./assets/img/svg/pokeball-pokemon-svgrepo-com.svg" alt="">
+                    </div>
+                    <div class="header_site_name">
+                        <p class="header_site_name">Pokedex</p>
+                    </div>
+                </a>
             </div>
-        </div>
-    </header>
+            <div class="search-container">
+                <img class="search-icon" src="./assets/icons/png/search.png" alt="Search" onclick="toggleSearchBar()">
+                <div class="search_bar">
+                    <input type="text" id="pokemon-search" placeholder="Search Pokémon/Type...">
+                    <div id="search-info" class="search-info hidden">Bitte 3 Buchstaben eingeben, um die Suche zu
+                        starten</div>
+                </div>
+            </div>
+        </header>
+    </div>
     <div id="loading-spinner" class="loading-spinner d_none">
         <img src="./assets/gifs/load_animation.gif" alt="Loading...">
-    </div>    
+    </div>
     <div id="pokemon_overlay" class="pokemon-overlay d_none">
         <div class="overlay-content">
             <div class="popup_content" id="popup-content"></div>
@@ -45,11 +50,14 @@
     </div>
     <section id="pokemon_load_content" class="pokemon-content">
     </section>
-    <div class="more-pokemons-btn">
-        <button id="load_more_pokemons" class="more-pokemons">
-            <img class="more_pokemon_gif" src="./assets/gifs/load_animation.gif" alt="">
-            Weitere Pokemon laden!
-        </button>
-    </div>
+    <section class="max-width-background-mp">
+        <div class="more-pokemons-btn">
+            <button id="load_more_pokemons" class="more-pokemons">
+                <img class="more_pokemon_gif" src="./assets/gifs/load_animation.gif" alt="">
+                Weitere Pokemon laden!
+            </button>
+        </div>
+    </section>
 </body>
+
 </html>

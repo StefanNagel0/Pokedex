@@ -10,11 +10,21 @@ async function openPopup(index) {
     const popupContent = document.getElementById('popup-content');
     popupContent.innerHTML = getPokemonPopupTemplate(currentPokemon);
     showMain(currentPokemon);
+
+    overlay.addEventListener('click', handleOverlayClick);
 }
 
 function closePopup() {
     const overlay = document.getElementById('pokemon_overlay');
     overlay.classList.remove('active');
+    overlay.removeEventListener('click', handleOverlayClick);
+}
+
+function handleOverlayClick(event) {
+    const popupContent = document.getElementById('popup-content');
+    if (!popupContent.contains(event.target)) {
+        closePopup();
+    }
 }
 
 function prevPokemon() {

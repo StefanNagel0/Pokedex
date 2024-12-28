@@ -7,6 +7,20 @@ header {
     justify-content: space-between;
     padding: 0 30px;
     transition: background-color 0.3s ease-in-out;
+    max-width: 1440px;
+    margin: auto;
+}
+
+.max-width-background{
+    background-color: rgb(11, 34, 42);
+}
+.max-width-background-mp{
+    background-color: rgb(11, 34, 42);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
 }
 
 header.darkened {
@@ -73,6 +87,8 @@ header.darkened {
     padding: 20px;
     overflow-y: scroll;
     height: 77.5vh;
+    max-width: 1440px;
+    margin: auto;
 }
 
 #pokemon-search {
@@ -124,9 +140,8 @@ header.darkened {
     width: 100%;
     border-top: 1px solid #ccc;
     height: 83px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    max-width: 1440px;
+    margin: auto;
 }
 
 .more-pokemons {
